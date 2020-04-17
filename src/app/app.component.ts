@@ -23,24 +23,7 @@ export class AppComponent {
     
   ];
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-    }
-  }
-} 
-
-interface event{
-  name: string;
-  year: number;
-}
-
-const  timeline: event[] = [ 
+timeline: event[] = [ 
   {name: "… ist die Titanic gesunken?", year: 1912},
   {name: "… war die Novemberrevolution?", year: 1918},
   {name: "… wurde das Grab von Tutanchamun gefunden?", year: 1922},
@@ -96,7 +79,7 @@ const  timeline: event[] = [
 
 // Sort by year
 
-const sortByYear =  (timeline: event[]) =>
+sortByYear =  (timeline: event[]) =>
   timeline.sort((eventA: event, eventB: event) => 
   {
 
@@ -106,6 +89,25 @@ const sortByYear =  (timeline: event[]) =>
 
   })
 
-const sortedByYear = sortByYear(timeline);
-console.log(sortedByYear);
+sortedByYear = this.sortByYear(this.timeline);
+
+
+
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+  }
+} 
+
+interface event{
+  name: string;
+  year: number;
+}
 
