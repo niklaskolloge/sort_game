@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {FormControl} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,6 @@ export class AppComponent {
   options: string[] = ['One', 'Two', 'Three'];
   
   title = 'Das Sortierspiel';
-  
-  todo = [
-    "test",
-    "test2"
-  ];
 
   done = [
     
@@ -91,8 +87,19 @@ sortByYear =  (timeline: event[]) =>
 
 sortedByYear = this.sortByYear(this.timeline);
 
+einloggen($event) {
+  let size = this.done.length;
+  let correct = true;
+  for (var i = 0; i < size-1; i++) {
+      correct = correct && this.earlier(this.done[i],this.done[i+1]);
+  }
+    alert("Deine Angabe war " + correct);
+}
 
-
+earlier(event1: event,event2: event) {
+  if (event1.year < event2.year) return true;
+  if (event1.year > event2.year) return false;
+}
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
