@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {FormControl} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +14,15 @@ export class AppComponent {
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   
-  title = 'Das Sortierspiel';
+  title = "Wann war was?";
 
   done = [
-    
+    {name: "… kam das Motorola Dynatac 8000 raus?", year: 1983},
   ];
 
 timeline: event[] = [ 
+  {name: "… war die erste Pauschalreise", year: 1841},
+  {name: "… wurde das Pergamon Museum in Berlin eröffnet?", year: 1909},
   {name: "… ist die Titanic gesunken?", year: 1912},
   {name: "… war die Novemberrevolution?", year: 1918},
   {name: "… wurde das Grab von Tutanchamun gefunden?", year: 1922},
@@ -27,20 +30,22 @@ timeline: event[] = [
   {name: "… war die Erfindung von Penicillin?", year: 1928},
   {name: "… begann der Chacokrieg?", year: 1932},
   {name: "… war die Machtergreifung von Adolf Hitler?", year: 1933},
+  {name: "… wurde die Golden Gate Bridge eröffnet?", year: 1937},
   {name: "… war der Angriff auf Pearl Harbour?", year: 1941},
   {name: "… wurde das Grundgesetz verabschiedet?", year: 1949},
   {name: "… ist Angela Merkel geboren?", year: 1954},
   {name: "… hat der Vietnamkrieg begonnnen?", year: 1955},
+  {name: "… lief der erste Werbespot im Fernsehen", year: 1956},
   {name: "… war das Gründungsjahr der Beatles?", year: 1957},
   {name: "… wurde unser Gymnasium eröffnet?", year: 1958},
   {name: "... war das Wembley Tor?", year: 1966},
+  {name: "... wurde das Phantasialand eröffnet", year: 1967},
   {name: "… war die erste Mondlandung?", year: 1969},
   {name: "… fanden die 20. Olympischen Spiele in München statt?", year: 1973},
   {name: "… war die Watergate Affäre (Rücktritt Nixon)?", year: 1974},
   {name: "… Entführung der Landshut?", year: 1977},
   {name: "… hat Reihold Messner den Mount Everest bestiegen?", year: 1978},
   {name: "… gab es das Misstrauensvotum gegen Helmut Schmidt?", year: 1982},
-  {name: "… kam das Motorola Dynatac 8000 raus?", year: 1983},
   {name: "… hat Boris Becker das erste Mal Wimbleden gewonnen?", year: 1985},
   {name: "… war die tollkühne Landung auf dem Roten Platz?", year: 1987},
   {name: "… war das Attentat auf Wolfgang Schäuble?", year: 1990},
