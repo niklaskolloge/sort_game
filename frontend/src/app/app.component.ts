@@ -13,14 +13,14 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 export class AppComponent {
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
-  
+
   title = "Wann war was?";
 
   done = [
     {name: "… kam das Motorola Dynatac 8000 raus?", year: 1983},
   ];
 
-timeline: event[] = [ 
+timeline: event[] = [
   {name: "… war die erste Pauschalreise", year: 1841},
   {name: "… wurde das Pergamon Museum in Berlin eröffnet?", year: 1909},
   {name: "… ist die Titanic gesunken?", year: 1912},
@@ -81,7 +81,7 @@ timeline: event[] = [
 // Sort by year
 
 sortByYear =  (timeline: event[]) =>
-  timeline.sort((eventA: event, eventB: event) => 
+  timeline.sort((eventA: event, eventB: event) =>
   {
 
       if(eventA.year > eventB.year) return 1;
@@ -101,6 +101,16 @@ einloggen($event) {
     alert("Deine Angabe war " + correct);
 }
 
+frage: string;
+year: number;
+
+hinzufuegen($event) {
+  let testname=this.frage;
+  let testyear=this.year;
+  let testevent={name: testname, year: testyear};
+  this.timeline.push(testevent);
+}
+
 earlier(event1: event,event2: event) {
   if (event1.year < event2.year) return true;
   if (event1.year > event2.year) return false;
@@ -116,7 +126,7 @@ earlier(event1: event,event2: event) {
                         event.currentIndex);
     }
   }
-} 
+}
 
 interface event{
   name: string;

@@ -31,3 +31,23 @@
     <div class="example-box" *ngFor="let item of done" cdkDrag>{{item.name}}</div>
   </div>
 </div>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>New Event</mat-label>
+    <!--<label for="frage">Name:</label>-->
+    <input matInput placeholder="Ex. ...ist Knut gestorben?" name="test"  [(ngModel)]="frage">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Year</mat-label>
+    <!--<label for="year">Name:</label>-->
+    <input matInput placeholder="Ex. 2013" name="hans" [(ngModel)]="year">
+  </mat-form-field>
+</form>
+
+<section>
+  <div class="example-button-row">
+    <button (click)="hinzufuegen($event)" mat-raised-button color="blue">Eingabe</button>
+  </div>
+</section>
