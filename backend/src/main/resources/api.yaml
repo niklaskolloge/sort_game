@@ -1,0 +1,93 @@
+openapi: "3.0.1"
+info:
+  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+tags:
+  - name: "event"
+    description: "Everything about your Pets"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+
+
+paths:
+  /events:
+    get:
+      tags:
+        - "event"
+      summary: "Get a list of events"
+      description: ""
+      operationId: "getEvents"
+
+
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        400:
+          description: "Error"
+  /game:
+    post:
+      tags:
+        - "event"
+      summary: "check event order"
+      description: ""
+      operationId: "checkGame"
+
+      requestBody:
+        description: list of events
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Game'
+        required: true
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Error"
+
+
+
+components:
+  schemas:
+    Game:
+      type: "object"
+      properties:
+        unsortedEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        sortedEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        result:
+          type: boolean
+
+    Event:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        year:
+          type: "integer"
+          format: "int64"
+        title:
+          type: "string"

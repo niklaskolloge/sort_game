@@ -1,0 +1,4 @@
+{
+  "input": "../backend/src/main/resources/api.yaml",
+  "output": "src/app/api"
+}
