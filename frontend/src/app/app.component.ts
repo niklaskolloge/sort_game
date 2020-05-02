@@ -3,6 +3,9 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import {FormControl} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {EventService} from './api/services';
+import {Event} from './api/models';
+
 
 @Component({
   selector: 'app-root',
@@ -11,6 +14,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 })
 
 export class AppComponent {
+  timeline: Event[]; 
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
 
@@ -20,7 +24,11 @@ export class AppComponent {
     {name: "… kam das Motorola Dynatac 8000 raus?", year: 1983},
   ];
 
-timeline: event[] = [
+constructor (private eventservice: EventService) {
+  this.eventservice.getEvents () .subscribe (events => {this.timeline = events});
+}
+
+/** timeline1: Event[] = [
   {name: "… war die erste Pauschalreise", year: 1841},
   {name: "… wurde das Pergamon Museum in Berlin eröffnet?", year: 1909},
   {name: "… ist die Titanic gesunken?", year: 1912},
@@ -77,11 +85,12 @@ timeline: event[] = [
   {name: "… ist Daniel Küblböck von der Kreuzfahrtschiff gefallen?", year: 2019},
 
 ];
+*/
 
 // Sort by year
 
-sortByYear =  (timeline: event[]) =>
-  timeline.sort((eventA: event, eventB: event) =>
+sortByYear =  (timeline: Event[]) =>
+  timeline.sort((eventA: Event, eventB: Event) =>
   {
 
       if(eventA.year > eventB.year) return 1;
@@ -111,7 +120,7 @@ hinzufuegen($event) {
   this.timeline.push(testevent);
 }
 
-earlier(event1: event,event2: event) {
+earlier(event1: Event,event2: Event) {
   if (event1.year < event2.year) return true;
   if (event1.year > event2.year) return false;
 }
@@ -127,9 +136,4 @@ earlier(event1: event,event2: event) {
     }
   }
 }
-
-interface event{
-  name: string;
-  year: number;
-}
-
+;
